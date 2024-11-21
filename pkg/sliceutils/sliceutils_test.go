@@ -74,3 +74,21 @@ func TestMinDistance(t *testing.T) {
 		}
 	}
 }
+func TestSameElements(t *testing.T) {
+	for _, test := range []struct {
+		arg1     []int
+		arg2     []int
+		expected bool
+	}{
+		{[]int{1, 2, 3, 4}, []int{4, 3, 2, 1}, true},
+		{[]int{1, 2, 3, 4}, []int{1, 2, 3, 4}, true},
+		{[]int{1, 2, 3, 4}, []int{1, 2, 3}, false},
+		{[]int{1, 2, 3, 4}, []int{1, 2, 3, 5}, false},
+		{[]int{1, 1, 2, 2}, []int{2, 2, 1, 1}, true},
+		{[]int{1, 1, 2, 2}, []int{1, 2, 2, 2}, false},
+	} {
+		if output := SameElements(test.arg1, test.arg2); output != test.expected {
+			t.Errorf("output %v not equal to expected %v", output, test.expected)
+		}
+	}
+}
